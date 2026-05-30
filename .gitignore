@@ -1,0 +1,8 @@
+node_modules/
+data/bookings.json
+data/contacts.json
+data/reviews.json
+.DS_Store
+*.log
+.env
+.env.local

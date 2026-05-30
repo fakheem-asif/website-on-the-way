@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumiere — Minimalist Beauty Studio</title>
+  <meta name="description" content="Lumiere is a minimalist beauty studio — precision cuts, color, silk press, keratin, and signature blowouts. Book online."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+
+  <div id="progressBar"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="side-nav" id="sideNav">
+    <a href="#home"     class="sn-dot active" data-label="Home"></a>
+    <a href="#services" class="sn-dot"        data-label="Services"></a>
+    <a href="#about"    class="sn-dot"        data-label="About"></a>
+    <a href="#gallery"  class="sn-dot"        data-label="Gallery"></a>
+    <a href="#reviews"  class="sn-dot"        data-label="Reviews"></a>
+    <a href="#book"     class="sn-dot"        data-label="Book"></a>
+    <a href="#contact"  class="sn-dot"        data-label="Contact"></a>
+  </nav>
+
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">◆</div>
+      <div class="preloader-text">
+        <span>L</span><span>U</span><span>M</span><span>I</span><span>E</span><span>R</span><span>E</span>
+      </div>
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+    </div>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a class="logo" href="#home">
+        <span class="logo-mark">◆</span>
+        <span class="logo-name">Lumiere</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#book" class="btn-nav magnetic">Book Now</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot-pulse"></span>
+        <span>Open today · By appointment</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line">Quiet luxury,</span>
+        <span class="line accent-line"><em>defined</em>.</span>
+      </h1>
+
+      <p class="hero-sub">
+        A minimalist studio devoted to the craft of healthy hair.
+        Considered, calm, and impeccably finished.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#book" class="btn-primary magnetic">
+          <span>Book a session</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#services" class="btn-outline">Explore services</a>
+      </div>
+
+      <div class="hero-meta">
+        <div class="meta-item"><span class="meta-num" data-stat="reviewCount">—</span><span class="meta-lbl">Reviews</span></div>
+        <div class="meta-divider"></div>
+        <div class="meta-item"><span class="meta-num" data-stat="averageRating">—</span><span class="meta-lbl">Avg rating</span></div>
+        <div class="meta-divider"></div>
+        <div class="meta-item"><span class="meta-num" data-stat="yearsOpen">—</span><span class="meta-lbl">Years</span></div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Precision Cut</span><span class="dot">◆</span>
+      <span>Color &amp; Balayage</span><span class="dot">◆</span>
+      <span>Silk Press</span><span class="dot">◆</span>
+      <span>Keratin Treatment</span><span class="dot">◆</span>
+      <span>Signature Blowout</span><span class="dot">◆</span>
+      <span>Deep Repair</span><span class="dot">◆</span>
+      <span>Precision Cut</span><span class="dot">◆</span>
+      <span>Color &amp; Balayage</span><span class="dot">◆</span>
+      <span>Silk Press</span><span class="dot">◆</span>
+      <span>Keratin Treatment</span><span class="dot">◆</span>
+      <span>Signature Blowout</span><span class="dot">◆</span>
+      <span>Deep Repair</span><span class="dot">◆</span>
+    </div>
+  </div>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">01 — Services</p>
+        <h2 class="section-title">A short, considered menu.</h2>
+        <p class="section-sub">Every service is intentional. We do fewer things, exceptionally well.</p>
+      </div>
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <section class="section about-section" id="about">
+    <div class="container about-grid">
+      <div class="about-visual">
+        <div class="about-img-frame">
+          <img
+            src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&auto=format&fit=crop&q=80"
+            alt="Lumiere studio interior" class="about-img"/>
+        </div>
+        <div class="about-float-card">
+          <div class="afc-icon">◆</div>
+          <div>
+            <strong>Sound, scent, light</strong>
+            <span>An environment designed for stillness</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="eyebrow">02 — Studio</p>
+        <h2 class="section-title">The studio,<br/><em>distilled</em>.</h2>
+        <p>Lumiere is a private, by-appointment studio built around a single idea — your time should feel like an exhale. We work in quiet rooms with linen, natural light, and the products we trust.</p>
+        <p>Our team of senior stylists has trained across Tokyo, Paris, and New York. The result is a calm, exact approach to hair that you carry with you for weeks.</p>
+        <div class="about-highlights">
+          <div class="ah-item"><span class="ah-check">+</span>Single client at a time</div>
+          <div class="ah-item"><span class="ah-check">+</span>Considered product selection</div>
+          <div class="ah-item"><span class="ah-check">+</span>All hair textures welcome</div>
+          <div class="ah-item"><span class="ah-check">+</span>Espresso &amp; tea service</div>
+          <div class="ah-item"><span class="ah-check">+</span>Sustainably sourced linens</div>
+          <div class="ah-item"><span class="ah-check">+</span>Transparent pricing</div>
+        </div>
+        <a href="#book" class="btn-primary magnetic">
+          <span>Reserve your time</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">03 — Work</p>
+        <h2 class="section-title">A quiet portfolio.</h2>
+        <p class="section-sub">Recent guests. Real hair. Honest finishing.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gal-item tall">
+          <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&auto=format&fit=crop&q=80" alt="" class="gal-img"/>
+          <div class="gal-overlay"><span>Blowout &amp; Style</span></div>
+        </div>
+        <div class="gal-item">
+          <img src="https://images.unsplash.com/photo-1519019121345-5c157f5bff0e?w=800&auto=format&fit=crop&q=80" alt="" class="gal-img"/>
+          <div class="gal-overlay"><span>Natural Curls</span></div>
+        </div>
+        <div class="gal-item">
+          <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&auto=format&fit=crop&q=80" alt="" class="gal-img"/>
+          <div class="gal-overlay"><span>Keratin</span></div>
+        </div>
+        <div class="gal-item wide">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1200&auto=format&fit=crop&q=80" alt="" class="gal-img"/>
+          <div class="gal-overlay"><span>Studio</span></div>
+        </div>
+        <div class="gal-item">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&auto=format&fit=crop&q=80" alt="" class="gal-img"/>
+          <div class="gal-overlay"><span>Silk Press</span></div>
+        </div>
+        <div class="gal-item">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80" alt="" class="gal-img"/>
+          <div class="gal-overlay"><span>Repair</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">04 — Reviews</p>
+        <h2 class="section-title">What guests say.</h2>
+        <div class="overall-rating">
+          <div class="or-stars">★ ★ ★ ★ ★</div>
+          <div class="or-score" id="orScore">—</div>
+          <div class="or-label">based on <span id="orCount">—</span> reviews</div>
+        </div>
+      </div>
+
+      <div class="reviews-slider">
+        <div class="reviews-track" id="reviewsTrack"></div>
+      </div>
+      <div class="slider-controls">
+        <button class="sl-btn" id="rPrev" aria-label="Previous">&#8249;</button>
+        <div class="sl-dots" id="rDots"></div>
+        <button class="sl-btn" id="rNext" aria-label="Next">&#8250;</button>
+      </div>
+
+      <div class="review-form-wrap">
+        <h3 class="rf-title">Leave a review</h3>
+        <form class="review-form" id="reviewForm">
+          <div class="cf-row">
+            <input type="text" id="rvName" placeholder="Your name" required maxlength="60"/>
+            <input type="text" id="rvService" placeholder="Service received" maxlength="40"/>
+          </div>
+          <div class="rating-stars" id="ratingStars" data-value="5">
+            <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
+          </div>
+          <textarea id="rvText" rows="3" placeholder="Tell us about your experience…" required maxlength="800"></textarea>
+          <button type="submit" class="btn-primary btn-full magnetic">
+            <span>Submit review</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <div class="cf-success" id="rvSuccess"><span>◆</span><p>Thank you — your review has been added.</p></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section book-section" id="book">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">05 — Booking</p>
+        <h2 class="section-title">Reserve your visit.</h2>
+        <p class="section-sub">Choose a service and a time. We will confirm by email.</p>
+      </div>
+
+      <div class="book-grid">
+        <form class="book-form" id="bookForm">
+          <div class="cf-row">
+            <div class="cf-group">
+              <label>Full name</label>
+              <input type="text" id="bkName" placeholder="Jane Doe" required/>
+            </div>
+            <div class="cf-group">
+              <label>Email</label>
+              <input type="email" id="bkEmail" placeholder="jane@example.com" required/>
+            </div>
+          </div>
+          <div class="cf-row">
+            <div class="cf-group">
+              <label>Phone</label>
+              <input type="tel" id="bkPhone" placeholder="(555) 123-4567"/>
+            </div>
+            <div class="cf-group">
+              <label>Service</label>
+              <select id="bkService" required></select>
+            </div>
+          </div>
+          <div class="cf-row">
+            <div class="cf-group">
+              <label>Date</label>
+              <input type="date" id="bkDate" required/>
+            </div>
+            <div class="cf-group">
+              <label>Time</label>
+              <select id="bkTime" required>
+                <option value="" disabled selected>Choose a time</option>
+                <option>09:00</option><option>10:00</option><option>11:00</option>
+                <option>12:00</option><option>13:00</option><option>14:00</option>
+                <option>15:00</option><option>16:00</option><option>17:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="cf-group">
+            <label>Notes (optional)</label>
+            <textarea id="bkNotes" rows="3" placeholder="Anything we should know about your hair or preferences…"></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-full magnetic">
+            <span>Confirm booking</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <div class="cf-success" id="bkSuccess"><span>◆</span><p>Booking received — we will be in touch shortly.</p></div>
+          <div class="cf-error" id="bkError"></div>
+        </form>
+
+        <aside class="book-aside">
+          <div class="ba-card">
+            <h4>What to expect</h4>
+            <ul>
+              <li><span class="ah-check">+</span>15-minute consultation</li>
+              <li><span class="ah-check">+</span>Espresso, tea, or sparkling water</li>
+              <li><span class="ah-check">+</span>Private, single-client studio</li>
+              <li><span class="ah-check">+</span>Email reminder 24 hours prior</li>
+            </ul>
+          </div>
+          <div class="ba-card">
+            <h4>Cancellation</h4>
+            <p>Please reschedule at least 24 hours in advance. We hold time exclusively for you.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">06 — Contact</p>
+        <h2 class="section-title">Find us.</h2>
+      </div>
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <div class="ci-card">
+            <div class="ci-item">
+              <div class="ci-icon-wrap">◆</div>
+              <div>
+                <strong>Studio</strong>
+                <span>184 Mercer Street<br/>SoHo, New York</span>
+              </div>
+            </div>
+            <div class="ci-item">
+              <div class="ci-icon-wrap">◆</div>
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:+12125550184" class="ci-phone">(212) 555-0184</a>
+              </div>
+            </div>
+            <div class="ci-item">
+              <div class="ci-icon-wrap">◆</div>
+              <div>
+                <strong>Hours</strong>
+                <div class="hours-list">
+                  <div><span>Tuesday – Saturday</span><span class="open-dot">10 — 19</span></div>
+                  <div><span>Sunday — Monday</span><span>Closed</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <h3>Send a note</h3>
+            <div class="cf-row">
+              <input type="text" id="cfName" placeholder="Your name" required/>
+              <input type="email" id="cfEmail" placeholder="Email" required/>
+            </div>
+            <textarea id="cfMsg" rows="3" placeholder="How can we help?" required></textarea>
+            <button type="submit" class="btn-primary magnetic btn-full">
+              <span>Send</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <div class="cf-success" id="cfSuccess"><span>◆</span><p>Thank you. We will reply within one business day.</p></div>
+          </form>
+        </div>
+
+        <div class="map-wrap">
+          <div class="map-frame">
+            <iframe
+              title="Lumiere location"
+              src="https://maps.google.com/maps?q=184+Mercer+Street+New+York&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="map-badge">
+            <span class="map-badge-icon">◆</span>
+            <div>
+              <strong>Lumiere Studio</strong>
+              <span>184 Mercer · SoHo</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top container">
+      <div class="ft-brand">
+        <a class="logo" href="#home">
+          <span class="logo-mark">◆</span>
+          <span class="logo-name">Lumiere</span>
+        </a>
+        <p>A quiet beauty studio in SoHo. Considered, calm, and impeccably finished.</p>
+        <div class="ft-socials">
+          <a href="#" class="ft-social" aria-label="Instagram">IG</a>
+          <a href="#" class="ft-social" aria-label="TikTok">TT</a>
+          <a href="#" class="ft-social" aria-label="Pinterest">PT</a>
+          <a href="tel:+12125550184" class="ft-social" aria-label="Call">TEL</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#book">Book</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>184 Mercer Street</li>
+          <li>SoHo, New York</li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Hours</h4>
+        <ul class="ft-contact">
+          <li>Tue — Sat · 10 — 19</li>
+          <li><a href="tel:+12125550184">(212) 555-0184</a></li>
+          <li><a href="mailto:hello@lumiere.studio">hello@lumiere.studio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Lumiere Studio · New York · All rights reserved</p>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="/js/three-scene.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
