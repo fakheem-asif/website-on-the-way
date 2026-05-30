@@ -628,8 +628,79 @@ input[type="date"]::-webkit-calendar-picker-indicator{filter:opacity(.5);cursor:
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 'use strict';
+
+/* ══════════════════════════════════════════════════════════
+   EMAIL CONFIG — REPLACE THE 3 PLACEHOLDERS BELOW
+   ────────────────────────────────────────────────────────
+   1) Create a free account at https://www.emailjs.com
+   2) Add an Email Service (Gmail, Outlook, etc.)
+   3) Create an Email Template — use these variables:
+        {{to_name}}, {{to_email}}, {{service}}, {{date}},
+        {{time}}, {{duration}}, {{price}}, {{phone}},
+        {{notes}}, {{booking_id}}, {{studio_address}},
+        {{studio_phone}}, {{salon_name}}
+      Set "To Email" in the template to: {{to_email}}
+      Set "Reply-To" to your salon email.
+   4) Copy your Public Key, Service ID, Template ID here:
+══════════════════════════════════════════════════════════ */
+const EMAIL_CONFIG = {
+  publicKey:         'YOUR_PUBLIC_KEY',
+  serviceId:         'YOUR_SERVICE_ID',
+  bookingTemplateId: 'YOUR_BOOKING_TEMPLATE_ID',
+  contactTemplateId: 'YOUR_CONTACT_TEMPLATE_ID',
+  salonName:         'Lumiere Studio',
+  salonEmail:        'hello@lumiere.studio',
+  studioAddress:     '184 Mercer Street, SoHo, New York',
+  studioPhone:       '(212) 555-0184'
+};
+
+const EMAIL_READY = typeof emailjs !== 'undefined'
+  && EMAIL_CONFIG.publicKey  && EMAIL_CONFIG.publicKey  !== 'YOUR_PUBLIC_KEY'
+  && EMAIL_CONFIG.serviceId  && EMAIL_CONFIG.serviceId  !== 'YOUR_SERVICE_ID';
+
+if (EMAIL_READY) {
+  try { emailjs.init({ publicKey: EMAIL_CONFIG.publicKey }); }
+  catch (e) { console.warn('EmailJS init failed', e); }
+}
+
+async function sendBookingEmail(booking) {
+  if (!EMAIL_READY || EMAIL_CONFIG.bookingTemplateId === 'YOUR_BOOKING_TEMPLATE_ID') {
+    return { skipped: true, reason: 'EmailJS not configured' };
+  }
+  const svc = SERVICES.find(s => s.name === booking.service);
+  const dateStr = booking.date ? new Date(booking.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }) : booking.date;
+  const params = {
+    to_name:        booking.name,
+    to_email:       booking.email,
+    service:        booking.service,
+    date:           dateStr,
+    time:           booking.time,
+    duration:       svc ? svc.duration + ' minutes' : '',
+    price:          svc ? '$' + svc.price : '',
+    phone:          booking.phone || 'Not provided',
+    notes:          booking.notes || 'None',
+    booking_id:     booking.id,
+    salon_name:     EMAIL_CONFIG.salonName,
+    studio_address: EMAIL_CONFIG.studioAddress,
+    studio_phone:   EMAIL_CONFIG.studioPhone
+  };
+  return emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.bookingTemplateId, params);
+}
+
+async function sendContactEmail(contact) {
+  if (!EMAIL_READY || EMAIL_CONFIG.contactTemplateId === 'YOUR_CONTACT_TEMPLATE_ID') {
+    return { skipped: true };
+  }
+  return emailjs.send(EMAIL_CONFIG.serviceId, EMAIL_CONFIG.contactTemplateId, {
+    to_name:    contact.name,
+    to_email:   contact.email,
+    message:    contact.message,
+    salon_name: EMAIL_CONFIG.salonName
+  });
+}
 
 /* ────── LOCAL "BACKEND" via localStorage ────── */
 const STORE = {
@@ -1093,40 +1164,66 @@ const bkErr  = document.getElementById('bkError');
 const bkDate = document.getElementById('bkDate');
 if (bkDate) bkDate.min = new Date().toISOString().slice(0,10);
 if (bkForm){
-  bkForm.addEventListener('submit', e => {
+  bkForm.addEventListener('submit', async e => {
     e.preventDefault();
     bkErr?.classList.remove('show');
     const btn = bkForm.querySelector('button[type="submit"]');
     const span = btn?.querySelector('span');
     const prev = span ? span.textContent : '';
-    if (span) span.textContent = 'Confirming…';
     if (btn) btn.disabled = true;
-    setTimeout(() => {
-      try {
-        const booking = {
-          id: 'b_' + Date.now().toString(36),
-          name: document.getElementById('bkName').value.trim(),
-          email: document.getElementById('bkEmail').value.trim(),
-          phone: document.getElementById('bkPhone').value.trim(),
-          service: document.getElementById('bkService').value,
-          date: document.getElementById('bkDate').value,
-          time: document.getElementById('bkTime').value,
-          notes: document.getElementById('bkNotes').value.trim(),
-          createdAt: new Date().toISOString(),
-          status: 'pending'
-        };
-        if (!booking.name || !booking.email || !booking.service || !booking.date || !booking.time) throw new Error('Missing fields');
-        saveBooking(booking);
-        if (bkOk) bkOk.classList.add('show');
-        bkForm.reset();
-        setTimeout(() => bkOk?.classList.remove('show'), 7000);
-      } catch(err){
-        if (bkErr){ bkErr.textContent = 'Please complete all required fields.'; bkErr.classList.add('show'); }
-      } finally {
-        if (span) span.textContent = prev;
-        if (btn) btn.disabled = false;
+
+    const booking = {
+      id: 'b_' + Date.now().toString(36),
+      name: document.getElementById('bkName').value.trim(),
+      email: document.getElementById('bkEmail').value.trim(),
+      phone: document.getElementById('bkPhone').value.trim(),
+      service: document.getElementById('bkService').value,
+      date: document.getElementById('bkDate').value,
+      time: document.getElementById('bkTime').value,
+      notes: document.getElementById('bkNotes').value.trim(),
+      createdAt: new Date().toISOString(),
+      status: 'pending'
+    };
+
+    if (!booking.name || !booking.email || !booking.service || !booking.date || !booking.time) {
+      if (bkErr){ bkErr.textContent = 'Please complete all required fields.'; bkErr.classList.add('show'); }
+      if (btn) btn.disabled = false;
+      return;
+    }
+
+    try {
+      if (span) span.textContent = 'Confirming…';
+      saveBooking(booking);
+
+      let emailNote = '';
+      if (EMAIL_READY) {
+        if (span) span.textContent = 'Sending confirmation…';
+        try {
+          const result = await sendBookingEmail(booking);
+          emailNote = result && result.skipped
+            ? ' (confirmation email not configured)'
+            : ` A confirmation has been sent to ${booking.email}.`;
+        } catch (err) {
+          console.warn('Email send failed', err);
+          emailNote = ' (we could not send the email, but your booking was saved).';
+        }
+      } else {
+        emailNote = ' We will email you a confirmation shortly.';
       }
-    }, 800);
+
+      if (bkOk) {
+        const p = bkOk.querySelector('p');
+        if (p) p.textContent = `Booking received for ${booking.service} on ${booking.date} at ${booking.time}.${emailNote}`;
+        bkOk.classList.add('show');
+      }
+      bkForm.reset();
+      setTimeout(() => bkOk?.classList.remove('show'), 9000);
+    } catch (err) {
+      if (bkErr){ bkErr.textContent = 'Something went wrong. Please try again.'; bkErr.classList.add('show'); }
+    } finally {
+      if (span) span.textContent = prev;
+      if (btn) btn.disabled = false;
+    }
   });
 }
 
@@ -1134,27 +1231,29 @@ if (bkForm){
 const cfForm = document.getElementById('contactForm');
 const cfOk   = document.getElementById('cfSuccess');
 if (cfForm){
-  cfForm.addEventListener('submit', e => {
+  cfForm.addEventListener('submit', async e => {
     e.preventDefault();
     const btn = cfForm.querySelector('button[type="submit"]');
     const span = btn?.querySelector('span');
     const prev = span ? span.textContent : '';
     if (span) span.textContent = 'Sending…';
     if (btn) btn.disabled = true;
-    setTimeout(() => {
-      saveContact({
-        id: 'c_' + Date.now().toString(36),
-        name: document.getElementById('cfName').value.trim(),
-        email: document.getElementById('cfEmail').value.trim(),
-        message: document.getElementById('cfMsg').value.trim(),
-        createdAt: new Date().toISOString()
-      });
-      if (cfOk) cfOk.classList.add('show');
-      cfForm.reset();
-      setTimeout(() => cfOk?.classList.remove('show'), 6000);
-      if (span) span.textContent = prev;
-      if (btn) btn.disabled = false;
-    }, 700);
+    const contact = {
+      id: 'c_' + Date.now().toString(36),
+      name: document.getElementById('cfName').value.trim(),
+      email: document.getElementById('cfEmail').value.trim(),
+      message: document.getElementById('cfMsg').value.trim(),
+      createdAt: new Date().toISOString()
+    };
+    saveContact(contact);
+    if (EMAIL_READY) {
+      try { await sendContactEmail(contact); } catch (err) { console.warn('Contact email failed', err); }
+    }
+    if (cfOk) cfOk.classList.add('show');
+    cfForm.reset();
+    setTimeout(() => cfOk?.classList.remove('show'), 6000);
+    if (span) span.textContent = prev;
+    if (btn) btn.disabled = false;
   });
 }
 

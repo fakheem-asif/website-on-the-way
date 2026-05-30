@@ -1,0 +1,90 @@
+<!-- Paste this HTML into your EmailJS Booking Template (Content tab) -->
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background:#F5F2EC; padding:40px 20px; color:#14130F;">
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width:560px; margin:0 auto; background:#FBF9F4; border:1px solid rgba(20,19,15,.10); border-radius:8px; overflow:hidden;">
+
+    <tr>
+      <td style="padding:40px 40px 20px; text-align:center; border-bottom:1px solid rgba(20,19,15,.10);">
+        <div style="font-size:14px; color:#C77B7A; margin-bottom:8px;">◆</div>
+        <div style="font-family: Georgia, 'Times New Roman', serif; font-size:24px; font-weight:500; letter-spacing:6px; color:#14130F;">LUMIERE</div>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:40px 40px 0;">
+        <p style="font-size:13px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 12px;">Appointment confirmed</p>
+        <h1 style="font-family: Georgia, 'Times New Roman', serif; font-size:32px; font-weight:400; line-height:1.15; color:#14130F; margin:0 0 24px; letter-spacing:-0.5px;">
+          Thank you, {{to_name}}.
+        </h1>
+        <p style="font-size:16px; line-height:1.7; color:#2A2722; margin:0 0 32px;">
+          Your appointment at {{salon_name}} is confirmed. We are looking forward to having you in the studio.
+        </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:0 40px;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border:1px solid rgba(20,19,15,.10); border-radius:6px; background:#F5F2EC;">
+          <tr>
+            <td style="padding:20px 24px; border-bottom:1px solid rgba(20,19,15,.10);">
+              <p style="font-size:11px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 4px;">Service</p>
+              <p style="font-family: Georgia, serif; font-size:18px; color:#14130F; margin:0;">{{service}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 24px; border-bottom:1px solid rgba(20,19,15,.10);">
+              <p style="font-size:11px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 4px;">Date &amp; Time</p>
+              <p style="font-family: Georgia, serif; font-size:18px; color:#14130F; margin:0;">{{date}} · {{time}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 24px; border-bottom:1px solid rgba(20,19,15,.10);">
+              <p style="font-size:11px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 4px;">Duration</p>
+              <p style="font-size:15px; color:#14130F; margin:0;">{{duration}} · {{price}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 24px; border-bottom:1px solid rgba(20,19,15,.10);">
+              <p style="font-size:11px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 4px;">Studio</p>
+              <p style="font-size:15px; color:#14130F; margin:0; line-height:1.6;">{{studio_address}}<br/>{{studio_phone}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 24px;">
+              <p style="font-size:11px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 4px;">Your details</p>
+              <p style="font-size:15px; color:#14130F; margin:0; line-height:1.6;">
+                {{to_name}}<br/>
+                {{to_email}}<br/>
+                {{phone}}
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:24px 40px 0;">
+        <p style="font-size:11px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 8px;">Notes</p>
+        <p style="font-size:14px; color:#2A2722; line-height:1.7; margin:0; padding:14px 16px; background:#F5F2EC; border-radius:6px;">{{notes}}</p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:32px 40px;">
+        <p style="font-size:11px; letter-spacing:2px; color:#8A8273; text-transform:uppercase; margin:0 0 12px;">Before your visit</p>
+        <ul style="margin:0; padding-left:20px; color:#2A2722; font-size:14px; line-height:1.8;">
+          <li>Arrive a few minutes early for a quiet consultation.</li>
+          <li>Please reschedule at least 24 hours in advance if your plans change.</li>
+          <li>Espresso, tea, and sparkling water are on us.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="padding:24px 40px 40px; border-top:1px solid rgba(20,19,15,.10); background:#14130F; color:#F5F2EC; text-align:center;">
+        <p style="font-family: Georgia, serif; font-size:16px; color:#F5F2EC; margin:0 0 6px;">{{salon_name}}</p>
+        <p style="font-size:12px; color:rgba(245,242,236,.55); letter-spacing:1px; margin:0;">Booking reference · {{booking_id}}</p>
+      </td>
+    </tr>
+  </table>
+</div>
