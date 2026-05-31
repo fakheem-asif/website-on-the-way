@@ -1,0 +1,18 @@
+# Google News topic: WORLD, NATION, BUSINESS, TECHNOLOGY, ENTERTAINMENT, SCIENCE, SPORTS, HEALTH
+news_category: TECHNOLOGY
+
+# Target narration length (words). ~110 words ≈ 45s at 150wpm.
+script_words: 110
+
+# Number of stock clips to fetch and concat
+clip_count: 5
+
+# edge-tts voice. Try: en-US-GuyNeural, en-US-JennyNeural, en-US-AriaNeural,
+# en-US-AndrewMultilingualNeural, en-GB-RyanNeural
+voice: en-US-GuyNeural
+
+# Words per caption chunk (lower = more TikTok-style)
+words_per_caption: 3
+
+# OpenAI model for script writing
+model: gpt-4o-mini
