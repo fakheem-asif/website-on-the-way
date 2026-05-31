@@ -1,0 +1,8 @@
+# Core — required for the offline (stub) pipeline to render a real MP4:
+imageio-ffmpeg>=0.4.9   # ships a static ffmpeg binary; no system install needed
+pillow>=10.0            # title cards, captions, citation overlays
+
+# Optional — only needed when you switch providers off "stub":
+# anthropic>=0.39       # providers.llm = anthropic   (narration writing)
+# openai>=1.40          # providers.llm/tts = openai
+# requests>=2.31        # providers.tts = elevenlabs; providers.media = pexels/wikimedia

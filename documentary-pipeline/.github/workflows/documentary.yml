@@ -1,0 +1,74 @@
+# Documentary pipeline workflow (manual trigger).
+#
+# NOTE: GitHub only runs workflows found in the repository-root .github/workflows/.
+# Because this project lives in a subfolder, copy this file to the repo root
+# (.github/workflows/documentary.yml) to activate it. It is kept here as a
+# self-contained template.
+#
+# By design there is no automatic "make a video about a real person" path:
+#   - mode=demo     renders the bundled FICTIONAL example (safe, no inputs).
+#   - mode=research produces an UNVERIFIED dossier and stops for human review.
+#   - mode=produce  renders only from a dossier you have already reviewed,
+#                   approved, and committed to the repo.
+name: Documentary
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to run"
+        type: choice
+        default: demo
+        options: [demo, research, produce]
+      subject:
+        description: "Subject (research mode only)"
+        required: false
+      dossier:
+        description: "Path to an approved *.reviewed.json (produce mode only)"
+        required: false
+
+jobs:
+  documentary:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: documentary-pipeline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: documentary-pipeline/requirements.txt
+      - run: pip install -r requirements.txt
+
+      - name: Demo (fictional subject)
+        if: ${{ inputs.mode == 'demo' }}
+        run: python -m pipeline demo --config config.example.json
+
+      - name: Research (stops for human review — no video)
+        if: ${{ inputs.mode == 'research' }}
+        run: |
+          test -n "${{ inputs.subject }}" || { echo "::error::subject is required"; exit 1; }
+          python -m pipeline research --subject "${{ inputs.subject }}" --out build
+
+      - name: Produce (requires an approved, reviewed dossier)
+        if: ${{ inputs.mode == 'produce' }}
+        env:
+          # Wire real providers by adding repo secrets and a config that selects them.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: |
+          test -n "${{ inputs.dossier }}" || { echo "::error::dossier is required"; exit 1; }
+          python -m pipeline produce --dossier "${{ inputs.dossier }}" --out build --config config.example.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: documentary-${{ inputs.mode }}
+          if-no-files-found: warn
+          path: |
+            documentary-pipeline/build/**/documentary.mp4
+            documentary-pipeline/build/**/documentary.srt
+            documentary-pipeline/build/**/manifest.json
+            documentary-pipeline/build/**/*.dossier.json
