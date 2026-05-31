@@ -1,0 +1,93 @@
+{
+  "subject": "Jordan Rivera",
+  "subject_role": "Former Mayor of Lakeview (fictional)",
+  "summary": "A demonstration dossier about a WHOLLY FICTIONAL politician in the fictional city of Lakeview. All people, sources, and events are invented to exercise the pipeline without making claims about any real person.",
+  "is_fictional": true,
+  "generator": "handwritten-demo",
+  "generated_at": "2026-01-01T00:00:00+00:00",
+  "approved": true,
+  "approved_by": "demo reviewer",
+  "approved_at": "2026-01-01T00:00:00+00:00",
+  "claims": [
+    {
+      "id": "c01",
+      "text": "Jordan Rivera was born in 1968 in the Riverside district of Lakeview, a mid-sized fictional river city",
+      "category": "biography",
+      "verified": true,
+      "reviewer_note": "Fictional demo fact.",
+      "sources": [
+        {"title": "Lakeview at 150: A Civic History", "publisher": "Lakeview Civic Archive", "url": "https://example.org/lakeview/civic-history", "published": "2019-05-10", "source_type": "book", "note": "Fictional source for demo."}
+      ]
+    },
+    {
+      "id": "c02",
+      "text": "Rivera trained as a civil engineer at Lakeview State College, graduating in 1990 before working on regional bridge projects",
+      "category": "biography",
+      "verified": true,
+      "reviewer_note": "Fictional demo fact.",
+      "sources": [
+        {"title": "Profile: The Engineer Who Ran City Hall", "publisher": "Lakeview Courier", "url": "https://example.org/courier/rivera-profile", "published": "2007-11-02", "source_type": "news", "note": "Fictional source for demo."}
+      ]
+    },
+    {
+      "id": "c03",
+      "text": "Rivera was first elected to the Lakeview city council in 1999 and became mayor in 2007",
+      "category": "timeline",
+      "verified": true,
+      "reviewer_note": "Fictional demo fact.",
+      "sources": [
+        {"title": "Lakeview Election Results, 1995-2015", "publisher": "City of Lakeview Records", "url": "https://example.org/lakeview/elections", "published": "2016-01-15", "source_type": "official", "note": "Fictional source for demo."}
+      ]
+    },
+    {
+      "id": "c04",
+      "text": "As mayor, Rivera launched the Greenway transit project, which opened Lakeview's first light-rail line in 2012",
+      "category": "record",
+      "verified": true,
+      "reviewer_note": "Fictional demo fact.",
+      "sources": [
+        {"title": "Light Rail Opens After Five-Year Build", "publisher": "Greater Lakeview Public Radio", "url": "https://example.org/glpr/greenway-opens", "published": "2012-06-21", "source_type": "news", "note": "Fictional source for demo."}
+      ]
+    },
+    {
+      "id": "c05",
+      "text": "In 2010 Rivera signed the Lakeview Open Records Ordinance, which put the city budget online for the first time",
+      "category": "record",
+      "verified": true,
+      "reviewer_note": "Fictional demo fact.",
+      "sources": [
+        {"title": "Open Records Ordinance, Council File 2010-114", "publisher": "City of Lakeview Records", "url": "https://example.org/lakeview/council/2010-114", "published": "2010-09-30", "source_type": "official", "note": "Fictional source for demo."}
+      ]
+    },
+    {
+      "id": "c06",
+      "text": "The Greenway project drew criticism in 2013 over cost overruns, which a council review attributed largely to delayed land acquisition",
+      "category": "context",
+      "verified": true,
+      "reviewer_note": "Fictional demo fact; framed neutrally.",
+      "sources": [
+        {"title": "Council Review of Greenway Costs", "publisher": "Lakeview Courier", "url": "https://example.org/courier/greenway-review", "published": "2013-04-18", "source_type": "news", "note": "Fictional source for demo."}
+      ]
+    },
+    {
+      "id": "c07",
+      "text": "\"A city is judged by how it moves its people,\" Rivera said at the 2012 opening of the light-rail line",
+      "category": "quote",
+      "verified": true,
+      "reviewer_note": "Fictional demo quote.",
+      "sources": [
+        {"title": "Transcript: Greenway Line Opening Remarks", "publisher": "City of Lakeview Records", "url": "https://example.org/lakeview/greenway-remarks", "published": "2012-06-21", "source_type": "transcript", "note": "Fictional source for demo."}
+      ]
+    },
+    {
+      "id": "c08",
+      "text": "Rivera left office in 2015; by 2020 the light-rail line carried an estimated 40,000 riders on an average weekday",
+      "category": "context",
+      "verified": true,
+      "reviewer_note": "Fictional demo fact.",
+      "sources": [
+        {"title": "Lakeview Transit Annual Ridership Report 2020", "publisher": "Lakeview Transit Authority", "url": "https://example.org/lta/ridership-2020", "published": "2021-02-11", "source_type": "official", "note": "Fictional source for demo."}
+      ]
+    }
+  ]
+}

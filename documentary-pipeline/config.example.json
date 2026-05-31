@@ -1,0 +1,27 @@
+{
+  "output_dir": "build",
+  "title_template": "{subject}",
+  "subtitle": "An AI-assisted documentary",
+  "words_per_second": 2.6,
+  "min_scene_seconds": 3.5,
+  "providers": {
+    "research": "stub",
+    "llm": "stub",
+    "tts": "stub",
+    "media": "stub"
+  },
+  "style": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "motion": true,
+    "bg": "#0e1116",
+    "fg": "#f2f4f8",
+    "muted": "#aeb6c2",
+    "accent": "#e0b34a"
+  },
+  "disclosure": {
+    "label": "AI-ASSISTED",
+    "statement": "This documentary was produced with AI assistance. The narration voice and some visuals are AI-generated. Every factual claim is drawn from cited public sources, listed in full in the closing credits."
+  }
+}
